@@ -1,0 +1,5 @@
+﻿  Practica1Estructuras.cpp
+C:\Users\JUAN DIEGO ALVARADO\source\repos\Practica1Estructuras\Practica1Estructuras\Practica1Estructuras.cpp(101,9): warning C4101:  'y': variable local sin referencia
+C:\Users\JUAN DIEGO ALVARADO\source\repos\Practica1Estructuras\Practica1Estructuras\Practica1Estructuras.cpp(101,6): warning C4101:  'x': variable local sin referencia
+C:\Users\JUAN DIEGO ALVARADO\source\repos\Practica1Estructuras\Practica1Estructuras\Practica1Estructuras.cpp(231,7): warning C4101:  'r': variable local sin referencia
+  Practica1Estructuras.vcxproj -> C:\Users\JUAN DIEGO ALVARADO\source\repos\Practica1Estructuras\Debug\Practica1Estructuras.exe

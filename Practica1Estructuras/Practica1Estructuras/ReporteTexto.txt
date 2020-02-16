@@ -1,0 +1,18 @@
+digraph G{ 
+  	rankdir = LR;  
+style = filled;
+		color = lightgrey;
+	node[style = filled,color= darkkhaki, shape=box3d];
+Nodo01412588[ label = "Prueba2
+Pueba2.txt" ];
+Nodo01412588->Nodo01412600;Nodo01412600[ label = "Prueba3
+Pueba3.txt" ];
+Nodo01412600->Nodo01415AB0;Nodo01415AB0[ label = "Prueba4
+Pueba4.txt" ];
+Nodo01415AB0->Nodo01415B28;Nodo01415B28[ label = "Pruebaxd
+Prueba.txt" ];
+Nodo01415B28->Nodo01412588;
+label = ListadeArchivos 
+	;
+ 
+ }
