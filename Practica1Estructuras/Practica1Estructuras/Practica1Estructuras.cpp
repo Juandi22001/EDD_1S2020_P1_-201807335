@@ -5,10 +5,17 @@
 #include<windows.h>
 #include "Texto.h"
 #include "Archivo.h"
+#include "ListaO1.h"
+#include <fstream>
 #define letra_a 1
 #define Espacio 32
 #define Enter 13
 #define Borrar 127
+#define Reporte 3
+
+#define Remplazar 23
+
+#define Guarda 19 
 
 #define FlechaIzq 25
 
@@ -18,14 +25,18 @@
 
 
 using namespace std;	
+Texto texto;
 void Menu();
 void Marco();
 char L;
-
+char B;
 Archivo archivo;
-void Crear();
+Nodo nodos;
 void Cargar();
 void Abrir();
+void Crear();
+
+void Buscar();
 
 void gotoxy(short x, short y) {
 	COORD pos;
@@ -45,7 +56,9 @@ int main()
 	return 0;
 }
 void Menu() {
+	system("color e");
 	Marco();
+
     int opcion;
 	gotoxy(20, 2);
 	printf("UNIVERSIDAD DE SANCARLOS DE GUATEMALA\n");
@@ -92,6 +105,13 @@ void Menu() {
 		system("cls");
 		Abrir();
 		break;
+	case 4:
+
+		system("cls");
+		texto.Ver();
+		break;
+	
+
 	}
 
 
@@ -99,16 +119,16 @@ void Menu() {
 void Marco() {
 
 	int x, y, i, d;
-	for (i = 2; i < 80; i++)
+	for (i = 2; i <100; i++)
 	{
 		gotoxy(i, 1);
 		printf("%c ",177);
-		gotoxy(i, 24);
+		gotoxy(i, 30);
 		printf("%c", 177);
 
 
 	}
-	for (d = 2; d < 24; d++)
+	for (d = 2; d < 30; d++)
 	{
 		gotoxy(1, d);
 		printf("%c", 178);
@@ -120,33 +140,31 @@ void Marco() {
 
 	gotoxy(1, 1);
 	printf("%c", 02);
-	gotoxy(00, 1);
+	gotoxy(00, 1);	
 	printf("%c", 02);
-	gotoxy(1, 24);
+	gotoxy(1, 30);
 	printf("%c", 01);
 }
 
 void Crear() {
-	gotoxy(8, 20);
+	system("color e");
+	gotoxy(8, 25);
 
 	cout << "^w(Buscar yRemplzar)";
 
-	gotoxy(25, 20);
+	gotoxy(40, 25);
 	cout << "^r(Reporte Palabras)";
 
-	gotoxy(65, 20);
+	gotoxy(65, 25);
 	cout << "^r(Guardar)";
 
-	Texto texto;
 	int x=4;
-	int y = 2;
-	Marco();
-	gotoxy(x, y);
+	int y = 4;
 
-	
+	gotoxy(x, y);
+	texto.Ver();
 	do
 	{
-
 
 		
 		L = _getch();
@@ -154,14 +172,7 @@ void Crear() {
 		cout << L;
 		gotoxy(x, y);
 	
-		if (L==Espacio)
-		{
-
-			texto.Agregar(' ');
-	
-
-		}
-		else if (L==Enter)
+		if (L==Enter)
 		{
 			y++;
 			x = 4;
@@ -177,32 +188,40 @@ void Crear() {
 			x--;
 
 		}
-		else if (L== 'àM')
+		else if (L== Guarda)
 		{
+			Marco();
+			texto.Guardar();
+			Marco();
+			Menu();
 
 		}
+		
 		else if (L == FlechaAbajo || L=='\n')
 		{
 			y++;
 		}
-
-		else if (L != letra_a || L!='\n'|| L!=FlechaDer|| L!=FlechaAbajo || L != FlechaIzq)
+	
+		else if (L!= letra_a )
+ 
 		{
 			texto.Agregar(L);
 		}
+		else if (L== Reporte)
+		{
+			cout << "reporte";
+			texto.Grafo();
+		}
 		
-	} while (L != letra_a);
-	
+
+	} while (L!=Remplazar);
+	Buscar();
 	system("cls");
-	texto.Ver();
-	texto.Grafo();
-	Menu();
 
 
 }
 void Cargar() {
 	system("cls");
-	Texto texto;
 	string Opcion;
 	Marco();
 	gotoxy(3, 3);
@@ -217,7 +236,6 @@ void Cargar() {
 	{
 
 		archivo.Grafo();
-		cout << "Grafico Generado ";
 		Menu();
 	}
 	else {
@@ -241,16 +259,37 @@ void Abrir() {
 	system("cls");
 	Marco();
 	archivo.VerL(Ruta);
-	cout << "\n";
+
 	archivo.Agregar("Prueba2", "Pueba2.txt");
 	archivo.Agregar("Prueba3", "Pueba3.txt");
 	archivo.Agregar("Prueba4", "Pueba4.txt");
      archivo.Agregar(Nombre, Ruta);
-
+	 Marco();
 	
-	Menu();
 }
 
 	
 
+void Buscar () {
+
+	char Contenido [] ="";
+
+	char Remplazo [] = "";
+
+	char x=' ';
+	gotoxy(25, 4);
+	
+	
+	cout << "Ingrese Palabra A buscar \n";
+	cin >> Contenido;
+
+	cout << "Ingrese Palabra A remplazar \n";
+	cin >> Remplazo;
+
+	texto.Buscar(Contenido,Remplazo);
+	nodos.Agregar(Contenido,Remplazo);
+	nodos.Grafo();
+	system("cls");
+	Menu();
+}
 

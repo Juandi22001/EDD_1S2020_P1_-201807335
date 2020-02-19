@@ -12,6 +12,15 @@
 #include <string>
 #define C 39
 using namespace std;
+void gotoxy3(short x, short y) {
+	COORD pos;
+	pos.X = x;
+	pos.Y = y;
+	HANDLE H;
+	H = GetStdHandle(STD_OUTPUT_HANDLE);
+
+	SetConsoleCursorPosition(H, pos);
+}
 class Archivo
 {
 private:
@@ -33,7 +42,7 @@ string  Letra;
 	void Grafo();
 
 };
-Texto texto;
+
 Archivo::Archivo() {
 	anterior = NULL;
 	siguiente = NULL;
@@ -50,6 +59,7 @@ void Archivo::Ver()
 		int cont = 0;
 		do {
 			cont++;
+			gotoxy2(18, 5);
 			cout << cont << "Nombre:" << actual->Nombre << "     " << actual->Letra << "\n";
 			actual = actual->siguiente;
 		} while (actual != this->Primero);
@@ -63,7 +73,7 @@ Archivo::Archivo(string N,string L) {
 }
 
 void Archivo :: Agregar(string Nombre,string L){
-
+	
 	Archivo* nuevoNodo = new Archivo(Nombre,L);
 
 	if (this->Primero == NULL)
@@ -102,9 +112,13 @@ void Archivo::VerL(string Ruta) {
 
 
 			char Contenido = { str[i] };
-
-			cout << Contenido;
+			gotoxy3(3, 8);
+			Texto texto;
 			texto.Agregar(Contenido);
+			 cout << str;
+	
+
+			
 		}
 	}
 }

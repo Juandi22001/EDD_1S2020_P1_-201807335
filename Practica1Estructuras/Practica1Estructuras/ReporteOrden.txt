@@ -1,0 +1,12 @@
+digraph G{ 
+  	rankdir = LR;  
+style = filled;
+		color = lightgrey;
+	node[style = filled,color= darkkhaki, shape=box3d];
+Nodo016DF398[ label = "ES remplazada por--	ED" ];
+Nodo016DF398->Nodo016DF408;Nodo016DF408[ label = "JUAN remplazada por--	POLO" ];
+
+label = ListadePalabras 
+	;
+ 
+ }
